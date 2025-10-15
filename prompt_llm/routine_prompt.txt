@@ -1,0 +1,15 @@
+   * Turn off everything
+     10. Turn off room light.
+     20. Turn off bathroom light.
+     30. Turn off bed light.
+     40. Close windows.
+     50. Close garage door.
+     60. Turn off garden light.
+
+   * Turn on everything
+     11. Turn on room light.
+     21. Turn on bathroom light.
+     31. Turn on bed light.
+     41. Open windows.
+     51. Open garage door.
+     61. Turn on garden light.

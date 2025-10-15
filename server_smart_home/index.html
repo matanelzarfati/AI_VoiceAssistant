@@ -1,0 +1,49 @@
+<!--
+==========================================================
+=          Architect, developer and researcher:          =
+=                     Matanel Zarfati                    =
+==========================================================
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Smart Home Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>My Home</h1>
+    <div class="tags">
+      <span class="tag" id="tag-lights">Lights</span>
+      <span class="tag" id="tag-windows">Windows</span>
+      <span class="tag" id="tag-doors">Doors</span>
+    </div>
+  </header>
+
+  <main>
+    <h2>Inside</h2>
+    <section class="room-section">
+      <h3>My Bedroom</h3>
+      <div class="device-grid" id="inside-grid">
+        <!-- cards injected here -->
+      </div>
+    </section>
+
+    <h2>Outside</h2>
+    <section class="room-section">
+      <div class="device-grid" id="outside-grid">
+        <!-- cards injected here -->
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Developed by: Matanel Zarfati
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

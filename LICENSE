@@ -1,0 +1,25 @@
+Copyright (c) 2025 Matanel Zarfati. All rights reserved.
+
+Permission is hereby granted to individuals who received this repository
+directly from the Author to use, run, and evaluate the Software for
+non‑commercial, academic review purposes only.
+
+The following are strictly prohibited without the Author’s prior written consent:
+  • Redistribution or publication of the Software or any part thereof (including public forks).
+  • Creation of derivative works, adaptations, or modified versions.
+  • Sub‑licensing, leasing, selling, or offering the Software as a service.
+  • Any commercial use, including use in paid projects or coursework-for-hire.
+
+NO WARRANTY. THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Third‑Party Components: This repository may interoperate with third‑party
+software and models (e.g., faster‑whisper/CT2, llama‑cpp‑python, GGUF models)
+that are licensed separately by their respective authors. Such licenses govern
+those components and are not granted by this license.
+
+By using the Software you agree to the above terms.

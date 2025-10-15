@@ -1,0 +1,38 @@
+[
+  {
+    "number": 1,
+    "name": "Room Light",
+    "mode": 1,
+    "type": "light"
+  },
+  {
+    "number": 2,
+    "name": "Bathroom Light",
+    "mode": 0,
+    "type": "light"
+  },
+  {
+    "number": 3,
+    "name": "Bed Light",
+    "mode": 1,
+    "type": "light"
+  },
+  {
+    "number": 4,
+    "name": "Windows",
+    "mode": 1,
+    "type": "fan"
+  },
+  {
+    "number": 5,
+    "name": "Garage Door",
+    "mode": 1,
+    "type": "door"
+  },
+  {
+    "number": 6,
+    "name": "Garden Light",
+    "mode": 1,
+    "type": "light"
+  }
+]

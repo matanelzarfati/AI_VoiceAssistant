@@ -1,0 +1,126 @@
+/*
+==========================================================
+=          Architect, developer and researcher:          =
+=                     Matanel Zarfati                    =
+==========================================================
+*/
+
+
+/* ───── RESET & BASIC ───── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(
+    135deg,
+    #8A9AF0 0%,
+    #A8F0E6 50%,
+    #FCE5C0 100%
+  );
+  color: #2c2c2c;
+  padding: 1.5rem;
+}
+
+/* ───── TEXT OUTLINE ───── */
+/* apply white fill + black stroke to all main text */
+header h1,
+.tags .tag,
+h2,
+h3,
+.name {
+  /* white fill */
+  color: white;
+  /* black outline */
+  -webkit-text-stroke: 1px black;
+          text-stroke: 1px black; /* some browsers may ignore this */
+}
+
+/* ───── HEADER & TAGS ───── */
+header {
+  margin-bottom: 1.5rem;
+}
+.tags {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+.tag {
+  background: rgba(255, 255, 255, 0.6);
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  /* text color/stroke handled above */
+  backdrop-filter: blur(8px);
+  transition: background 0.3s, color 0.3s;
+}
+.tag.active {
+  background: #FFD54F;
+  /* keep text white+outline even when active */
+  color: white;
+}
+
+/* ───── SECTION TITLES ───── */
+h2 {
+  margin: 1.5rem 0 1rem;
+  font-size: 1.25rem;
+}
+h3 {
+  margin: 1rem 0;
+  font-size: 1.1rem;
+}
+
+/* ───── DEVICE GRID ───── */
+.device-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1rem;
+}
+
+/* ───── DEVICE CARD ───── */
+.device-card {
+  background: white;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: transform 0.2s;
+}
+.device-card.off { background: #e0e0e0; }
+.device-card.on  { background: #fff9e6; }
+.device-card:hover { transform: translateY(-2px); }
+
+/* ───── ICON STYLING ───── */
+.icon-container {
+  margin-bottom: 0.5rem;
+}
+.icon-container svg {
+  width: 48px;
+  height: 48px;
+  fill: currentColor;
+  transition: color 0.3s;
+}
+.device-card.off .icon-container { color: #888888; }
+.device-card.on  .icon-container { color: #FFD54F; }
+
+/* ───── DEVICE NAME & STATUS ───── */
+.name {
+  margin-bottom: 0.25rem;
+  /* white text + stroke applied above */
+}
+.status-text {
+  /* leave these as normal gray text */
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* ───── FOOTER ───── */
+.footer {
+  text-align: center;
+  margin: 2rem 0 1rem;
+  /* leave footer text as normal gray */
+  font-size: 0.9rem;
+  color: #555;
+}

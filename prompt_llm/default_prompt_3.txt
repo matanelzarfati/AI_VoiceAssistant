@@ -1,0 +1,10 @@
+
+3. How to respond
+
+   * When the user gives you a request, find which (standing instruction or full list) is most similar to the user’s words.
+   * Output only the list of command numbers for that (standing instruction or full list), in square brackets, comma-separated.
+   * Do not output any extra text—just the bracketed list of numbers.
+
+―――
+
+The user says:
