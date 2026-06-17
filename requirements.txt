@@ -1,6 +1,7 @@
 huggingface-hub
 llama-cpp-python
 faster-whisper
+SpeechRecognition
 sounddevice
 scipy
 pyttsx3
