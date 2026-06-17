@@ -1,0 +1,6 @@
+huggingface-hub
+llama-cpp-python
+faster-whisper
+sounddevice
+scipy
+pyttsx3

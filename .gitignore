@@ -1,0 +1,37 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment variables and secrets
+.env
+.env.*
+
+# macOS
+.DS_Store
+
+# IDEs and editors
+.idea/
+.vscode/
+
+# Logs
+*.log
+
+# Local AI models
+*.gguf
+*.bin
+models/
+
+# Audio/temp files
+*.wav
+*.mp3
+*.tmp
+
+# OS generated files
+Thumbs.db

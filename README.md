@@ -1,31 +1,83 @@
-# A Local AI-Powered Voice Assistant for Smart-Home Control
+# AI Voice Assistant
 
 **Author:** Matanel Zarfati  
 **Program:** B.Sc. Computer Science  
 **Platform:** Python 3.13  
-**License:** See **License & Usage** (restricted)
+**License:** All rights reserved. See [License](#license).
 
-> A fully local pipeline (ASR → LLM → deterministic validators → atomic state → TTS) for privacy-preserving smart-home control. No cloud calls in the main loop.
+AI Voice Assistant is a local-first Python smart-home voice assistant that listens to voice commands, processes them using speech recognition and an LLM, validates the generated commands, and updates a local smart-home dashboard.
+
+The project focuses on privacy, local execution, deterministic validation, and a simple web-based interface for monitoring smart-home device states.
+
+---
+
+## Demo
+
+![Smart Home Dashboard](./assets/smart-home-dashboard.png)
 
 ---
 
 ## Overview
 
-Commercial voice assistants typically depend on remote services, trading away privacy and adding latency. This project demonstrates a **practical, private, and responsive** assistant that runs entirely on a laptop CPU:
+Commercial voice assistants usually depend on remote cloud services. This project demonstrates a privacy-focused alternative that can run locally on a personal computer.
 
-- **Offline ASR:** Whisper (CTranslate2 / `faster-whisper`)  
-- **Local LLM:** Mistral-7B-Instruct via `llama-cpp-python` (GGUF)  
-- **Deterministic Safety Layer:** Validates and constrains LLM output to safe device updates  
-- **Crash-Safe Persistence:** Atomic replace of a JSON state file  
-- **Minimal UI:** Static HTML/JS dashboard polling the JSON state
+The assistant uses speech recognition to transcribe the user's voice, an LLM to convert natural language commands into structured numeric actions, and a deterministic validation layer to make sure only valid smart-home actions are applied.
 
-> The academic report is **not** included in this repository.
+The system updates a local `devices.json` file and displays the current device states through a static HTML, CSS, and JavaScript dashboard.
+
+---
+
+## Architecture
+
+```text
+Voice Command
+     ↓
+Speech Recognition
+     ↓
+LLM Command Parser
+     ↓
+Deterministic Validation Layer
+     ↓
+devices.json
+     ↓
+Local Web Dashboard
+```
+
+---
+
+## Features
+
+- Wake-word based assistant using the name "Mia"
+- Speech-to-text command transcription
+- LLM-based natural language command parsing
+- Numeric command-code system for smart-home actions
+- Deterministic validation of LLM output
+- Conflict handling by keeping the latest state per device
+- Routine support for approved multi-action commands
+- Atomic updates to the smart-home state file
+- Local web dashboard for monitoring device states
+- Text-to-speech feedback after command processing
+
+---
+
+## Technologies
+
+- Python 3.13
+- Faster-Whisper
+- SpeechRecognition
+- llama.cpp / llama-cpp-python
+- Mistral-7B-Instruct GGUF model
+- HTML
+- CSS
+- JavaScript
+- JSON
+- Local HTTP server
 
 ---
 
 ## Repository Layout
 
-```
+```text
 AI_VoiceAssistant.py
 prompt_llm/
   command_prompt.txt
@@ -38,110 +90,175 @@ server_smart_home/
   index.html
   script.js
   style.css
-research-demo/
-  smart_home_animation_(smart_home_server).png
+assets/
+  smart-home-dashboard.png
 README.md
 LICENSE
+requirements.txt
+.gitignore
 ```
 
 ---
 
 ## Quick Start
 
+### 1. Create a virtual environment
+
 ```bash
-# Python 3.13 virtual environment
 python3.13 -m venv .venv
 source .venv/bin/activate
 pip install --upgrade pip
-
-# Core dependencies
-pip install huggingface-hub llama-cpp-python faster-whisper sounddevice scipy pyttsx3
 ```
 
-**Models**
+On Windows:
 
-- Obtain a **GGUF** of *Mistral-7B-Instruct* (e.g., `Q4_K_M`) via Hugging Face.
-- Whisper is managed by `faster-whisper` (CT2); the *small* model is recommended for laptop CPUs.
-- If needed, update the paths inside `AI_VoiceAssistant.py`.
+```bash
+py -3.13 -m venv .venv
+.venv\Scripts\activate
+pip install --upgrade pip
+```
 
-**Run**
+### 2. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Download the required models
+
+This repository does not include large AI model files.
+
+You need to download:
+
+- A GGUF version of Mistral-7B-Instruct, for example `Q4_K_M`
+- A Faster-Whisper model, such as `small.en` or another compatible model
+
+After downloading the models, update the relevant model paths inside:
+
+```text
+AI_VoiceAssistant.py
+```
+
+### 4. Run the assistant
 
 ```bash
 python AI_VoiceAssistant.py
-# Opens a local HTTP server; visit: http://localhost:8000/
+```
+
+The local smart-home dashboard runs through a local HTTP server.
+
+Default address:
+
+```text
+http://localhost:8000/
 ```
 
 ---
 
-## What It Does (high level)
+## How It Works
 
-1. **Wake-word & Follow-up:** Listens for “Mia”, then records a short follow-up utterance.  
-2. **ASR (local):** Transcribes on CPU (VAD + beam search).  
-3. **Prompting:** Concatenates the five prompt files and appends the user utterance.  
-4. **LLM (local):** Returns a **single bracketed integer list** (constrained format).  
-5. **Validation:**  
-   - Rejects unknown/ill-formed codes.  
-   - Resolves conflicts by **last state per device**.  
-   - Allows multi-action only when matching a **defined routine**.  
-6. **Persistence & UI:** Applies changes to `devices.json` via **atomic replace**; the dashboard polls ~1 Hz.  
-7. **TTS:** Provides concise spoken feedback.
+1. The assistant listens for the wake word "Mia".
+2. After detecting the wake word, it records the user's follow-up command.
+3. The speech recognition component converts the audio into text.
+4. The prompt files are combined with the user command.
+5. The local LLM returns a structured list of numeric command codes.
+6. The validation layer checks that the output is valid and safe.
+7. Valid commands are written to `devices.json`.
+8. The local dashboard reads the JSON file and updates the device states.
+9. The assistant provides short spoken feedback to the user.
 
 ---
 
-## Requirements & Notes
+## Command Validation
 
-- **OS:** macOS, Linux, or Windows (tested on macOS with NSSpeechSynthesizer via `pyttsx3`).  
-- **Audio:** 16 kHz mono microphone; ensure permissions are granted.  
-- **Performance (typical on M1 Pro):** near real-time ASR for short commands; LLM ~100–400 ms for short outputs.
+The project includes a deterministic validation layer to reduce the risk of applying incorrect LLM output.
+
+The validation logic:
+
+- Rejects unknown command codes
+- Rejects malformed responses
+- Removes invalid actions
+- Resolves duplicate commands by keeping the latest state for each device
+- Allows multi-action commands only when they match a defined routine
+
+This approach keeps the LLM flexible while making the final device updates predictable and controlled.
 
 ---
 
 ## Configuration
 
-- Wake word, chunk sizes, and follow-up length are constants in `AI_VoiceAssistant.py`.  
-- Adjust device catalog in `prompt_llm/command_prompt.txt`.  
-- Define multi-action routines in `prompt_llm/routine_prompt.txt` (headers starting with `* `).
+Main configuration options are located inside:
+
+```text
+AI_VoiceAssistant.py
+```
+
+Prompt and command behavior can be adjusted in:
+
+```text
+prompt_llm/command_prompt.txt
+prompt_llm/routine_prompt.txt
+prompt_llm/default_prompt_1.txt
+prompt_llm/default_prompt_2.txt
+prompt_llm/default_prompt_3.txt
+```
+
+The web dashboard files are located in:
+
+```text
+server_smart_home/
+```
+
+The device states are stored in:
+
+```text
+server_smart_home/devices.json
+```
 
 ---
 
-## License & Usage (important)
+## Notes
 
-This repository is **copyright © Matanel Zarfati. All rights reserved.**
-
-- **Non-commercial, no redistribution, no derivative works** without explicit written permission.  
-- Academic reviewers may **clone and run locally** for evaluation only.  
-- Public forks, code reuse, or model/prompt extraction are **not permitted**.
-
-```
-Copyright (c) 2025 Matanel Zarfati. All rights reserved.
-
-Permission is granted to individuals who received this repository directly from the author
-to use, run, and evaluate the software for non-commercial, academic review purposes only.
-Redistribution, publication, sublicensing, and creation of derivative works are prohibited
-without prior written consent from the author.
-```
-
-#### For the complete and binding license terms, see the attached [LICENSE](LICENSE) file.
+- The project is designed as a local-first assistant.
+- Large model files are not included in the repository.
+- Microphone permissions may be required depending on the operating system.
+- Performance depends on the selected models and the computer hardware.
+- The academic report is not included in this repository.
 
 ---
 
-## Citation
+## What I Learned
 
-If you reference this work in an academic context:
+- Designing a local AI assistant architecture
+- Integrating speech recognition with an LLM
+- Using prompt engineering for structured command generation
+- Validating LLM output before applying actions
+- Managing smart-home device states with JSON
+- Building a local dashboard with HTML, CSS, and JavaScript
+- Structuring a Python project for portfolio and academic review
 
-```
-Zarfati, M. (2025). A Local AI-Powered Voice Assistant for Smart-Home Control.
-Undergraduate Research Project, Azrieli College of Engineering Jerusalem.
-```
+---
+
+## Future Improvements
+
+- Add a graphical configuration page for devices and routines
+- Add more automated tests for command validation
+- Improve error handling for missing models or microphone issues
+- Add support for more smart-home device types
+- Add optional HomeKit or MQTT integration
+- Package the project with a cleaner installation flow
+
+---
+
+## License
+
+Copyright © 2025 Matanel Zarfati. All rights reserved.
+
+This project is provided for portfolio and academic review purposes only.  
+For full license terms, see [LICENSE](LICENSE).
 
 ---
 
 ## Contact
 
-For academic review access or licensing inquiries: **Matanel Zarfati** — open an issue or contact privately.
-
----
-
-## Demo
-
-![Smart Home Animation](./research-demo/smart_home_animation_%28smart_home_server%29.png)
+For questions, academic review, or licensing inquiries, contact Matanel Zarfati.
