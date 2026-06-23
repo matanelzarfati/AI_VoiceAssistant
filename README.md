@@ -255,6 +255,7 @@ server_smart_home/devices.json
 Copyright © 2025 Matanel Zarfati. All rights reserved.
 
 This project is provided for portfolio and academic review purposes only.
+
 For full license terms, see [LICENSE](LICENSE).
 
 ---
