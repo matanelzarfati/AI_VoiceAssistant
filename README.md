@@ -1,11 +1,11 @@
 # AI Voice Assistant
 
-**Author:** Matanel Zarfati  
-**Program:** B.Sc. Computer Science  
-**Platform:** Python 3.13  
+**Author:** Matanel Zarfati
+**Program:** B.Sc. Computer Science
+**Platform:** Python 3.13
 **License:** All rights reserved. See [License](#license).
 
-AI Voice Assistant is a local-first Python smart-home voice assistant that listens to voice commands, processes them using speech recognition and an LLM, validates the generated commands, and updates a local smart-home dashboard.
+AI Voice Assistant is a local-first AI/LLM-powered Python smart-home voice assistant that listens to voice commands, processes them using speech recognition and local LLM inference, validates the generated commands, and updates a local smart-home dashboard.
 
 The project focuses on privacy, local execution, deterministic validation, and a simple web-based interface for monitoring smart-home device states.
 
@@ -47,31 +47,31 @@ Local Web Dashboard
 
 ## Features
 
-- Wake-word based assistant using the name "Mia"
-- Speech-to-text command transcription
-- LLM-based natural language command parsing
-- Numeric command-code system for smart-home actions
-- Deterministic validation of LLM output
-- Conflict handling by keeping the latest state per device
-- Routine support for approved multi-action commands
-- Atomic updates to the smart-home state file
-- Local web dashboard for monitoring device states
-- Text-to-speech feedback after command processing
+* Wake-word based assistant using the name "Mia"
+* Speech-to-text command transcription
+* LLM-based natural language command parsing
+* Numeric command-code system for smart-home actions
+* Deterministic validation of LLM output
+* Conflict handling by keeping the latest state per device
+* Routine support for approved multi-action commands
+* Atomic updates to the smart-home state file
+* Local web dashboard for monitoring device states
+* Text-to-speech feedback after command processing
 
 ---
 
 ## Technologies
 
-- Python 3.13
-- Faster-Whisper
-- SpeechRecognition
-- llama.cpp / llama-cpp-python
-- Mistral-7B-Instruct GGUF model
-- HTML
-- CSS
-- JavaScript
-- JSON
-- Local HTTP server
+* Python 3.13
+* faster-whisper
+* SpeechRecognition
+* llama.cpp / llama-cpp-python
+* Mistral-7B-Instruct GGUF model
+* HTML
+* CSS
+* JavaScript
+* JSON
+* Local HTTP server
 
 ---
 
@@ -130,8 +130,8 @@ This repository does not include large AI model files.
 
 You need to download:
 
-- A GGUF version of Mistral-7B-Instruct, for example `Q4_K_M`
-- A Faster-Whisper model, such as `small.en` or another compatible model
+* A GGUF version of Mistral-7B-Instruct, for example `Q4_K_M`
+* A faster-whisper model, such as `small.en` or another compatible model
 
 After downloading the models, update the relevant model paths inside:
 
@@ -175,11 +175,11 @@ The project includes a deterministic validation layer to reduce the risk of appl
 
 The validation logic:
 
-- Rejects unknown command codes
-- Rejects malformed responses
-- Removes invalid actions
-- Resolves duplicate commands by keeping the latest state for each device
-- Allows multi-action commands only when they match a defined routine
+* Rejects unknown command codes
+* Rejects malformed responses
+* Removes invalid actions
+* Resolves duplicate commands by keeping the latest state for each device
+* Allows multi-action commands only when they match a defined routine
 
 This approach keeps the LLM flexible while making the final device updates predictable and controlled.
 
@@ -219,34 +219,34 @@ server_smart_home/devices.json
 
 ## Notes
 
-- The project is designed as a local-first assistant.
-- Large model files are not included in the repository.
-- Microphone permissions may be required depending on the operating system.
-- Performance depends on the selected models and the computer hardware.
-- The academic report is not included in this repository.
+* The project is designed as a local-first assistant.
+* Large model files are not included in the repository.
+* Microphone permissions may be required depending on the operating system.
+* Performance depends on the selected models and the computer hardware.
+* The academic report is not included in this repository.
 
 ---
 
 ## What I Learned
 
-- Designing a local AI assistant architecture
-- Integrating speech recognition with an LLM
-- Using prompt engineering for structured command generation
-- Validating LLM output before applying actions
-- Managing smart-home device states with JSON
-- Building a local dashboard with HTML, CSS, and JavaScript
-- Structuring a Python project for portfolio and academic review
+* Designing a local AI assistant architecture
+* Integrating speech recognition with an LLM
+* Using prompt engineering for structured command generation
+* Validating LLM output before applying actions
+* Managing smart-home device states with JSON
+* Building a local dashboard with HTML, CSS, and JavaScript
+* Structuring a Python project for portfolio and academic review
 
 ---
 
 ## Future Improvements
 
-- Add a graphical configuration page for devices and routines
-- Add more automated tests for command validation
-- Improve error handling for missing models or microphone issues
-- Add support for more smart-home device types
-- Add optional HomeKit or MQTT integration
-- Package the project with a cleaner installation flow
+* Add more automated tests for command validation
+* Improve error handling for missing models or microphone issues
+* Package the project with a cleaner installation flow
+* Add a graphical configuration page for devices and routines
+* Add support for more smart-home device types
+* Add optional HomeKit or MQTT integration
 
 ---
 
@@ -254,7 +254,7 @@ server_smart_home/devices.json
 
 Copyright © 2025 Matanel Zarfati. All rights reserved.
 
-This project is provided for portfolio and academic review purposes only.  
+This project is provided for portfolio and academic review purposes only.
 For full license terms, see [LICENSE](LICENSE).
 
 ---
