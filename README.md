@@ -1,9 +1,9 @@
 # AI Voice Assistant
 
-**Author:** Matanel Zarfati
-**Program:** B.Sc. Computer Science
-**Platform:** Python 3.13
-**License:** All rights reserved. See [License](#license).
+* **Author:** Matanel Zarfati
+* **Program:** B.Sc. Computer Science
+* **Platform:** Python 3.13
+* **License:** All rights reserved. See [License](#license).
 
 AI Voice Assistant is a local-first AI/LLM-powered Python smart-home voice assistant that listens to voice commands, processes them using speech recognition and local LLM inference, validates the generated commands, and updates a local smart-home dashboard.
 
